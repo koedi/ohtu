@@ -34,6 +34,19 @@ public class AuthenticationService {
             status.addError("username should have at least 3 characters");
         }
 
+        if (password.length() < 8) {
+            status.addError("password should have at least 8 characters");
+        }
+
+        if (password.chars().allMatch(Character::isLetter)) {
+            status.addError("password has to have non-alphabets");
+        }
+
+        if (!password.equals(passwordConfirmation)) {
+            status.addError("password and password confirmation do not match");
+        }
+
+
         if (status.isOk()) {
             userDao.add(new User(username, password));
         }
