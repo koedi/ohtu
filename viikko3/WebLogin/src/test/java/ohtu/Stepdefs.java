@@ -32,6 +32,32 @@ public class Stepdefs {
         element.click();
     }
 
+    @Given("user with username {string} with password {string} is successfully created")
+    public void userIsCreated(String username, String password){
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));       
+        element.click();   
+        createNewUser(username, password, password);
+        pageHasContent("Welcome to Ohtu Application!");
+        element = driver.findElement(By.linkText("continue to application mainpage"));
+    }    
+    
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void creatingUserWithBadUsernameAndBadPasswork(String username, String password) {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));       
+        element.click();   
+        createNewUser(username, password, password);
+        //pageHasContent("username should have at least 3 characters");     
+        element = driver.findElement(By.linkText("back to home"));       
+        element.click();  
+    }
+
+    
+
+
+
+
     @When("a valid username {string} and password {string} and matching password confirmation are entered")
     public void properNewUserCredentialsAreGiven(String username, String password) {
         Random r = new Random();
@@ -76,7 +102,10 @@ public class Stepdefs {
             pageHasContent("password and password confirmation do not match");
     }
     
-
+    @When("incorrect username {string} and password {string} are given")
+    public void incorrectUsernameAndPasswordAreGiven(String username, String password) {
+        logInWith(username, password);
+    }    
 
     @When("correct username {string} and password {string} are given")
     public void correctUsernameAndPasswordAreGiven(String username, String password) {
