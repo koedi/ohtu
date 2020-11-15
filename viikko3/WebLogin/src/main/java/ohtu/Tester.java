@@ -14,6 +14,22 @@ public class Tester {
         
         sleep(2);
         
+
+        /*
+        //Original test
+        WebElement element = driver.findElement(By.linkText("login"));
+        element.click();
+
+        sleep(2);
+        element = driver.findElement(By.name("username"));
+        element.sendKeys("pekka");
+        element = driver.findElement(By.name("password"));
+        element.sendKeys("akkep");
+        element = driver.findElement(By.name("login"));
+        */
+
+        /*
+        //Correct username, incorrect password
         WebElement element = driver.findElement(By.linkText("login"));
         element.click();
 
@@ -22,14 +38,55 @@ public class Tester {
         element = driver.findElement(By.name("username"));
         element.sendKeys("pekka");
         element = driver.findElement(By.name("password"));
-        element.sendKeys("akkep");
+        element.sendKeys("pekka");
         element = driver.findElement(By.name("login"));
-        
+
         sleep(2);
         element.submit();
 
+        */
+
+        /*
+        //New user creation
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
+
+        element = driver.findElement(By.name("username"));
+        element.sendKeys("aku");
+        element = driver.findElement(By.name("password"));
+        element.sendKeys("ankka");
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys("ankka");
+
+        sleep(2);
+        element.submit();
+
+        */
+
+        //New user creation and logout
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
+
+        element = driver.findElement(By.name("username"));
+        element.sendKeys("aku");
+        element = driver.findElement(By.name("password"));
+        element.sendKeys("ankka");
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys("ankka");
+
+        sleep(2);
+        element.submit();
+
+        element = driver.findElement(By.linkText("continue to application mainpage"));
+        element.click();
+
         sleep(3);
-        
+
+        element = driver.findElement(By.linkText("logout"));
+        element.click();
+
+        sleep(2);
+
         driver.quit();
     }
     
