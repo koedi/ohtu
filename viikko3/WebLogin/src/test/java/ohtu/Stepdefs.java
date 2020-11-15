@@ -12,8 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class Stepdefs {
-    //WebDriver driver = new ChromeDriver();
-    WebDriver driver = new HtmlUnitDriver();
+    WebDriver driver = new ChromeDriver();
+    //WebDriver driver = new HtmlUnitDriver();
     String baseUrl = "http://localhost:4567";
     
     @Given("login is selected")
@@ -43,16 +43,13 @@ public class Stepdefs {
         pageHasContent("invalid username or password");
         pageHasContent("Give your credentials to login");
     }    
-    
-    @When("username {string} and password {string} are given")
-    public void usernameAndPasswordAreGiven(String username, String password) throws Throwable {
+
+    @When("incorrect username {string} and incorrect password {string} are given")
+    public void incorrectUsernameAndIncorrectPasswordAreGive(String username, String password) {
         logInWith(username, password);
-    }   
-    
-    @Then("system will respond {string}")
-    public void systemWillRespond(String pageContent) throws Throwable {
-        assertTrue(driver.getPageSource().contains(pageContent));
     }
+    
+    
     
     @After
     public void tearDown(){
