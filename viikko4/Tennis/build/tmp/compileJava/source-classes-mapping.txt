@@ -1,4 +1,0 @@
-ohtu/TennisGame.java
- ohtu.TennisGame
-ohtu/App.java
- ohtu.App
