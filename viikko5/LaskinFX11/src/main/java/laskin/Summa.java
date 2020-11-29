@@ -4,6 +4,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class Summa extends Komento {
+
+    private int prevOperand;
+
     public Summa(TextField tuloskentta, TextField syotekentta, Button nollaa, Button undo, Sovelluslogiikka sovellus) {
         super(tuloskentta, syotekentta, nollaa, undo, sovellus);
     }
@@ -17,25 +20,12 @@ public class Summa extends Komento {
         } catch (Exception e) {
         }
 
+        this.prevOperand = arvo;
         this.sovellus.setTulos(this.sovellus.getTulos() + arvo);
-
-        int laskunTulos = sovellus.getTulos();
-        
-        syotekentta.setText("");
-        tuloskentta.setText("" + laskunTulos);
-        
-        if ( laskunTulos==0) {
-            nollaa.disableProperty().set(true);
-        } else {
-            nollaa.disableProperty().set(false);
-        }
-        undo.disableProperty().set(false);
     }
 
     @Override
     public void peru() {
-     
+        this.sovellus.setTulos(this.sovellus.getTulos() -  prevOperand);
     }
-
-
 }

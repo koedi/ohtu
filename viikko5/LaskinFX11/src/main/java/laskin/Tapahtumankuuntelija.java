@@ -47,6 +47,19 @@ public class Tapahtumankuuntelija implements EventHandler {
             this.edellinen = null;
         }  
 
+
+        int laskunTulos = sovellus.getTulos();
+        
+        syotekentta.setText("");
+        tuloskentta.setText("" + laskunTulos);
+        
+        if ( laskunTulos==0) {
+            nollaa.disableProperty().set(true);
+        } else {
+            nollaa.disableProperty().set(false);
+        }
+        undo.disableProperty().set(false);   
+
     }
 
 }
