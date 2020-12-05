@@ -29,5 +29,10 @@ public class QueryBuilder {
         return this;    
     }
 
+    public QueryBuilder oneOf(Matcher m1, Matcher m2) {
+        matcher = new Or(m1, m2);
+        return this;
+    }
+
 
 }
