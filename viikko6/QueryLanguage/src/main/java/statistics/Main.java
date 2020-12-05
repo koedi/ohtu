@@ -8,6 +8,8 @@ public class Main {
 
         Statistics stats = new Statistics(new PlayerReaderImpl(url));
           
+
+        /*
         Matcher m1 = new And( new HasAtLeast(5, "goals"),
                              new HasAtLeast(5, "assists"),
                              new PlaysIn("PHI")
@@ -54,6 +56,38 @@ public class Main {
         for (Player player : stats.matches(m5)) {
             System.out.println(player);
         }
+        */
+
+        QueryBuilder query = new QueryBuilder();
+        Matcher m6 = query.build();
+    
+        for (Player player : stats.matches(m6)) {
+            System.out.println( player );
+        }
+
+        System.out.println("---");
+
+        QueryBuilder query2 = new QueryBuilder();
+        Matcher m2 = query2.playsIn("NYR").build();
+     
+        for (Player player : stats.matches(m2)) {
+            System.out.println( player );
+        }
+
+        System.out.println("---");
+
+        
+        QueryBuilder query3 = new QueryBuilder(); 
+        Matcher m8 = query3.playsIn("NYR")
+                         .hasAtLeast(5, "goals")
+                         .hasFewerThan(10, "goals").build();
+     
+        for (Player player : stats.matches(m8)) {
+            System.out.println( player );
+        }
+
+
+
 
 
 
